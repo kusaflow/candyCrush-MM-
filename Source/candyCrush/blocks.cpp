@@ -2,6 +2,7 @@
 
 
 #include "blocks.h"
+#include "gameInst/kusaGameInstance.h"
 
 // Sets default values
 Ablocks::Ablocks()
@@ -19,7 +20,12 @@ void Ablocks::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	blockType = (int)FMath::FRandRange(1,6);
+	UkusaGameInstance* gameInst = Cast<UkusaGameInstance>(GetGameInstance());
+	int limit = gameInst->T_Of_Block;
+
+	// randomly generating blocks
+	blockType = (int)FMath::FRandRange(1,limit+1);
+	//setting the material accordingly
 	SetMat();
 }
 
@@ -30,11 +36,13 @@ void Ablocks::Tick(float DeltaTime)
 
 }
 
-void Ablocks::isSelected(bool isSel) {
-	if (isSel) {
+void Ablocks::isSelected() {
+	if (isCurrently_Selected) {
+		//block is selected
 		sm_block->SetMaterial(0, isSelectedMat);
 	}
 	else {
+		// when not selected
 		SetMat();
 	}
 }

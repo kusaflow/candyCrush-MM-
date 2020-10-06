@@ -56,6 +56,7 @@ void Astage::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	
+	//tracing and spawning
 	tracer(TTS_1->GetComponentLocation());
 	tracer(TTS_2->GetComponentLocation());
 	tracer(TTS_3->GetComponentLocation());
@@ -77,11 +78,12 @@ void Astage::tracer(FVector start) {
 
 	}
 	else {
+		// when tracing fails block is spawn
 		FActorSpawnParameters spawnPara;
 		spawnPara.Owner = this;
 
 		if (GetWorld()) {
-			GetWorld()->SpawnActor<AActor>(theBlock, FVector(2370.0, start.Y, start.Z), FRotator(0), spawnPara);
+			GetWorld()->SpawnActor<AActor>(theBlock, FVector(plane3->GetComponentLocation().X, start.Y, start.Z), FRotator(0), spawnPara);
 		}
 	}
 }

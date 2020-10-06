@@ -15,9 +15,11 @@ public:
 	// Sets default values for this actor's properties
 	Ablocks();
 
+	//static mesh cube
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = mesh, meta = (AllowPrivateAccess = "true"))
 		class UStaticMeshComponent* sm_block;
 
+	//all Materials
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Materials")
 		class UMaterial* mat1;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Materials")
@@ -32,7 +34,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Materials")
 		class UMaterial* isSelectedMat;
 	
+	// bool true when that block is selected
+	bool isCurrently_Selected;
 
+	//type of the block
 	int blockType = 0;
 
 protected:
@@ -43,7 +48,11 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	void isSelected(bool isSel);
 
+	// reset the material
+	void isSelected();
+	
+
+	// reset the material
 	void SetMat();
 };

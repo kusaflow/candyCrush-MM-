@@ -23,6 +23,7 @@ public:
 		class UStaticMeshComponent* plane3;
 
 
+	//==== spawner box component-------------------------------------------
 	//TTS = trace To Spawn
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = mesh, meta = (AllowPrivateAccess = "true"))
 		class UBoxComponent* TTS_1;
@@ -42,7 +43,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, category = "block")
 		TSubclassOf<class Ablocks> theBlock;
 
-
+	//this block is there to not disturb the scale
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = mesh, meta = (AllowPrivateAccess = "true"))
 		class UBoxComponent* For_uniformScale;
 
@@ -55,6 +56,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// tracing and spawning
 	void tracer(FVector start);
 
 };

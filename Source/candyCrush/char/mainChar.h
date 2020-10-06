@@ -15,18 +15,16 @@ public:
 	// Sets default values for this pawn's properties
 	AmainChar();
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = mesh, meta = (AllowPrivateAccess = "true"))
-		class UStaticMeshComponent* plane1;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = mesh, meta = (AllowPrivateAccess = "true"))
-		class UStaticMeshComponent* plane2;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = mesh, meta = (AllowPrivateAccess = "true"))
-		class UStaticMeshComponent* plane3;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = mesh, meta = (AllowPrivateAccess = "true"))
-		class UBoxComponent* For_uniformScale;
-
-
+	//checks if the you can select
 	bool CanSelect;
+
+	// stores all ref of the selecting blocks
+	TArray<AActor*> Q_block;
+
+	//tracks the last selected block
+	FVector lastSelectedBlock;
+	//current material selected
+	int MatToSelect;
 
 
 protected:
@@ -40,9 +38,16 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	//selection start
 	void SelStart();
+	//selection ends
 	void SelStop();
-
+	//all selecting mechanic
 	void selecting();
+	//Go To Menu
+	void GoToMenu();
+	//Reset Game
+	void ResetGame();
+
 
 };
